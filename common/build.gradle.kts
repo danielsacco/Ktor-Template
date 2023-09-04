@@ -1,6 +1,3 @@
-import com.onegravity.Dependency
-import com.onegravity.Plugin
-
 plugins {
     java
     kotlin("jvm")
@@ -9,65 +6,63 @@ plugins {
 dependencies {
     implementation(kotlin("stdlib"))
 
-    //Dependency.implementation.forEach(::implementation)
     // Ktor Server
-    implementation("io.ktor:ktor-server-core:1.6.8-eap-339")
-    implementation("io.ktor:ktor-server-netty:1.6.8")
+    implementation(libs.ktor.server.core)
+    implementation(libs.ktor.server.netty)
 
     // Monitoring metrics
-    implementation("io.ktor:ktor-metrics:1.6.7")
-    implementation("io.ktor:ktor-metrics-micrometer:1.6.7")
+    implementation(libs.ktor.metrics)
+    implementation(libs.ktor.metrics.micrometer)
 
     // Security
-    implementation("io.ktor:ktor-auth:1.6.7")
-    implementation("io.ktor:ktor-auth-jwt:1.6.7")
+    implementation(libs.ktor.auth)
+    implementation(libs.ktor.auth.jwt)
 
     // Koin / Dependency Injection
-    implementation("io.insert-koin:koin-ktor:3.1.5")
-    implementation("io.insert-koin:koin-logger-slf4j:3.1.5")
+    implementation(libs.koin.ktor)
+    implementation(libs.koin.logger.slf4j)
 
     // Kotlinx Serialization / Deserialization
-    implementation("io.ktor:ktor-serialization:1.6.7")
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-core:1.3.2")
+    implementation(libs.ktor.serialization)
+    implementation(libs.kotlinx.serialization.core)
     // GSON Serialization / Deserialization
-    implementation("io.ktor:ktor-gson:1.6.7")
+    implementation(libs.ktor.gson)
     // Moshi
-    implementation("com.squareup.moshi:moshi-kotlin:1.13.0")
+    implementation(libs.moshi.kotlin)
 
     // Postgres
-    implementation("org.postgresql:postgresql:42.3.8")
+    implementation(libs.postgresql)
     // Ktorm (ORM)
-    implementation("org.ktorm:ktorm-core:3.4.1")
-    implementation("org.ktorm:ktorm-support-postgresql:3.4.1")
-    implementation("org.ktorm:ktorm-jackson:3.4.1")
+    implementation(libs.ktorm.core)
+    implementation(libs.ktorm.support.postgresql)
+    implementation(libs.ktorm.jackson)
     // Exposed (ORM)
-    implementation("org.jetbrains.exposed:exposed:0.17.14")
+    implementation(libs.exposed)
     // HikariCP (Connection Pooling)
-    implementation("com.zaxxer:HikariCP:4.0.3")
+    implementation(libs.hikaricp)
     // Flyway (DB migration)
-    implementation("org.flywaydb:flyway-core:8.5.0")
+    implementation(libs.flyway.core)
 
     // OpenAPI Generator
-    implementation("com.github.1gravity:Ktor-OpenAPI-Generator:0.2-beta.20")
+    implementation(libs.ktor.openapi.generator)
 
     // Miscellaneous
-    implementation("io.github.cdimascio:dotenv-kotlin:6.2.2")
+    implementation(libs.dotenv.kotlin)
 
     // Logging
-    implementation("ch.qos.logback:logback-classic:1.2.10")
+    implementation(libs.logback.classic)
     
-    //Dependency.testImplementation.forEach(::testImplementation)
-    testImplementation("io.ktor:ktor-server-tests:1.6.8")
-    testImplementation("org.jetbrains.kotlin:kotlin-test:1.5.31")
+    testImplementation(libs.ktor.server.tests)
+    testImplementation(libs.kotlin.test)
 
     // Kotest
-    testImplementation("io.kotest:kotest-runner-junit5:5.1.0")
-    testImplementation("io.kotest:kotest-assertions-core:5.1.0")
-    testImplementation("io.kotest:kotest-property:5.1.0")
-    testImplementation("io.kotest:kotest-assertions-json:5.1.0")
+    testImplementation(libs.kotest.assertions.core)
+    testImplementation(libs.kotest.assertions.json)
+    testImplementation(libs.kotest.property)
+    testImplementation(libs.kotest.runner.junit5)
 
     // Testcontainers for Postgres
-    testImplementation("org.testcontainers:junit-jupiter:1.16.3")
-    testImplementation("org.testcontainers:postgresql:1.16.3")
+    testImplementation(libs.testcontainers.junit.jupiter)
+    testImplementation(libs.testcontainers.postgresql)
 
 }
