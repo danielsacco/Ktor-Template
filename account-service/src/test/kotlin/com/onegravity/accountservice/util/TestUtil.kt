@@ -19,12 +19,14 @@ import org.koin.core.context.GlobalContext.stopKoin
 import org.koin.core.context.startKoin
 import org.koin.dsl.module
 
+@OptIn(ExperimentalStdlibApi::class)
 private fun Application.ktormApp() {
     mainModule {
         testDI { KtormDaoProvider(TestDatabaseConfigImpl) }
     }
 }
 
+@OptIn(ExperimentalStdlibApi::class)
 private fun Application.exposeApp() {
     mainModule {
         testDI { ExposedDaoProvider(TestDatabaseConfigImpl) }
