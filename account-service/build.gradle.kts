@@ -10,7 +10,7 @@ plugins {
     kotlin("plugin.serialization")
     kotlin("kapt")
 
-    id("com.github.johnrengelman.shadow") version "7.1.2"
+    id("com.github.johnrengelman.shadow") version "8.1.1"
 }
 
 dependencies {
@@ -93,6 +93,11 @@ tasks {
         }
     }
 }
+
+tasks["distZip"].dependsOn("shadowJar")
+tasks["distTar"].dependsOn("shadowJar")
+tasks["startScripts"].dependsOn("shadowJar")
+tasks["startShadowScripts"].dependsOn("jar")
 
 tasks.register("stage") {
     dependsOn("assemble", "clean")

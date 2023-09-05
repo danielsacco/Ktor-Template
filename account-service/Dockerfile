@@ -3,7 +3,7 @@
 
 # Build jar
 
-FROM gradle:7.2-jdk8 AS build
+FROM gradle:8.3.0-jdk17 AS build
 
 WORKDIR /appbuild
 COPY . /appbuild
@@ -12,10 +12,11 @@ RUN gradle :account-service:clean :account-service:assemble
 
 # Deploy jar
 
-FROM openjdk:8-jre-alpine
+#FROM openjdk:8-jre-alpine
+FROM amazoncorretto:17-alpine
 
 WORKDIR /app
 
 COPY --from=0 appbuild/account-service/build/libs/account-service.jar application.jar
 
-CMD ["java", "-server", "-XX:+UnlockExperimentalVMOptions", "-XX:+UseCGroupMemoryLimitForHeap", "-XX:InitialRAMFraction=2", "-XX:MinRAMFraction=2", "-XX:MaxRAMFraction=2", "-XX:+UseG1GC", "-XX:MaxGCPauseMillis=100", "-XX:+UseStringDeduplication", "-jar", "application.jar"]
+CMD ["java", "-server", "-XX:+UnlockExperimentalVMOptions", "-XX:InitialRAMFraction=2", "-XX:MinRAMFraction=2", "-XX:MaxRAMFraction=2", "-XX:+UseG1GC", "-XX:MaxGCPauseMillis=100", "-XX:+UseStringDeduplication", "-jar", "application.jar"]
